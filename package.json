@@ -1,0 +1,28 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "dinosaur project",
+  "main": "main.js",
+  "scripts": {
+    "build-css": "node-sass --include-path scss main.scss main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrohrodrigues/udacity-dinosaur.git"
+  },
+  "keywords": [
+    "javascript",
+    "dinosaur"
+  ],
+  "author": "Pedro Rodrigues",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrohrodrigues/udacity-dinosaur/issues"
+  },
+  "homepage": "https://github.com/pedrohrodrigues/udacity-dinosaur#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0",
+    "nodemon": "^2.0.7"
+  }
+}

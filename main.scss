@@ -1,0 +1,41 @@
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.main-container{
+    align-items: center;
+    display:flex;
+    height:100%;
+    justify-content: center;
+    width:100%;
+}
+
+.form-container{
+    border: 1px solid #e1e4e8;
+    border-radius:6px;
+    padding:20px;
+    max-width:600px;
+    transition: all 350ms ease-in-out;
+    width:95%;
+}
+
+.form {
+    &__item {
+      margin:5px 0;
+    }
+    &__label{
+      display:block;
+      margin:5px 0; 
+    }
+    &__field{
+      padding: 5px 0;
+      width:100%;
+    }
+}
+
+.comparision-tiles {
+  border: 1px solid #e1e4e8;
+  display:none;
+  transition: all 350ms ease-in-out;
+}
