@@ -30,4 +30,15 @@ body {
 .comparision-tiles {
   border: 1px solid #e1e4e8;
   display: none;
+  flex-wrap: wrap;
   transition: all 350ms ease-in-out; }
+  .comparision-tiles h2 {
+    text-align: center; }
+  .comparision-tiles .tile-item {
+    width: 33%; }
+    .comparision-tiles .tile-item img {
+      max-width: 80%; }
+  .comparision-tiles #human-tile {
+    order: 4; }
+  .comparision-tiles p {
+    text-align: center; }

@@ -4,6 +4,7 @@
   "description": "dinosaur project",
   "main": "main.js",
   "scripts": {
+    "lint": "eslint",
     "build-css": "node-sass --include-path scss main.scss main.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
@@ -22,6 +23,8 @@
   },
   "homepage": "https://github.com/pedrohrodrigues/udacity-dinosaur#readme",
   "devDependencies": {
+    "eslint": "^7.22.0",
+    "lint": "^0.7.0",
     "node-sass": "^5.0.0",
     "nodemon": "^2.0.7"
   }

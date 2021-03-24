@@ -37,5 +37,23 @@ body {
 .comparision-tiles {
   border: 1px solid #e1e4e8;
   display:none;
+  flex-wrap:wrap;
   transition: all 350ms ease-in-out;
+  h2 {
+    text-align: center;
+  }
+  .tile-item{
+    width:33%;
+    img {
+      max-width:80%;
+    }
+  }
+  
+  #human-tile {
+    order:4;
+  }
+
+  p {
+    text-align: center;
+  }
 }
