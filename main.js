@@ -1,27 +1,51 @@
-function Animal(name, height, weight){
+function Animal(name, height, weight, diet){
     this.name = name;
     this.height = height;
     this.weight = weight;
+    this.diet = diet;
     this.image = "images/" + name.toLowerCase() + ".png";
 }
 
 Animal.prototype.compareWeight = function(animal) {
-    const comparsion = animal.height / this.height;
-    let heightReturn = 'Ours weights are the same'
-    if(animal.height > this.heihgt) {
-        heightReturn = `The ${animal.name} weights ${comparsion} more than you`;
+    const comparsion = this.weight / animal.weight;
+    let weightReturn = 'Ours weights are the same'
+    if(animal.weight > this.heihgt) {
+        weightReturn = `The ${animal.name} weights ${comparsion} times more than you`;
     } else {
-        heightReturn = `You weights ${comparsion} more than ${animal.name}`;
+        weightReturn = `${this.name} weights ${comparsion} times more than ${animal.name}`;
+    }
+
+    return weightReturn;
+}
+
+Animal.prototype.compareHeight = function(animal) {
+    const comparsion = this.height / animal.height;
+    let heightReturn = 'Ours weights are the same';
+    if(animal.height > this.heihgt) {
+        heightReturn = `The ${animal.name} ${comparsion} times taller more than you`;
+    } else {
+        heightReturn = `${this.name} are ${comparsion} times taller more than ${animal.name}`;
     }
 
     return heightReturn;
+}
+
+Animal.prototype.compareDiet = function(animal) {
+  let dietReturn = "";
+  if (this.diet.toLowerCase() === animal.diet.toLowerCase()) {
+    return dietReturn = `The ${this.name} and you have the same diet!`;
+  }
+  else {
+    return dietReturn = `The ${this.name} and you have different diets!`;
+  }
+  return dietReturn;
 }
 
 let dinosaurs = [];
 
 fetch("dino.json")
     .then(response => response.json())
-    .then(json => dinosaurs = json.Dinos.map(dinosaur => new Animal(dinosaur.species, dinosaur.weight, dinosaur.height)));
+    .then(json => dinosaurs = json.Dinos.map(dinosaur => new Animal(dinosaur.species, dinosaur.weight, dinosaur.height, dinosaur.diet)));
 
 
 const show = function (element) {
@@ -59,6 +83,12 @@ function getFact(dinosaur, human){
         case 0:
             fact = dinosaur.compareWeight(human);
             break;
+        case 1:
+            fact = dinosaur.compareHeight(human);
+            break;
+        case 2:
+          fact = dinosaur.compareDiet(human);
+          break;
         default:
             fact = 'A dinosaur!';
     }
@@ -71,7 +101,8 @@ document.getElementById('compare-button').addEventListener('click', function(eve
   const name = document.getElementById('name').value;
   const height = document.getElementById('height').value;
   const weight = document.getElementById('weight').value;
-  const you = new Animal(name,height,weight);
+  const diet = document.getElementById('diet').value;
+  const you = new Animal(name, height, weight, diet);
   let count = 0;
   for(let dino in dinosaurs) {
       const currentDinosaur = dinosaurs[dino];

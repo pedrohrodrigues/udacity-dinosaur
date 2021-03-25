@@ -13,6 +13,9 @@
       <script defer src="main.js"></script>
   </head>
   <body>
+    <section class="title">
+      <h1>Compare Me</h1>
+    </section>
     <section class="main-container">
       <section class="form-container" id="main-form-container">
         <form class="form" id="human-form">
@@ -26,13 +29,23 @@
             <label class="form__label" for="height">
               Height:
             </label>
-            <input type="text" class="form__field" id="height" />
+            <input type="number" class="form__field" id="height" />
           </section>
           <section class="form__item">
             <label class="form__label" for="weight">
               Weight:
             </label>
-            <input type="text" class="form__field" id="weight" />
+            <input type="number" class="form__field" id="weight" />
+          </section>
+          <section>
+            <label class="form__label" for="diet">
+              Diet:
+            </label>
+            <select id="diet" class="form__field" name="diet">
+              <option value="Herbavore">Herbavore</option>
+              <option value="Omnivore">Omnivore</option>
+              <option value="Carnivore">Carnivore</option>
+          </select>
           </section>
           <section class="form__item">
             <input type="button" value="compare me" id="compare-button">
