@@ -1,8 +1,9 @@
-function Animal(name, height, weight, diet) {
+function Animal(name, height, weight, diet, fact) {
   this.name = name;
   this.height = height;
   this.weight = weight;
   this.diet = diet;
+  this.fact = fact;
   this.image = `images/${name.toLowerCase()}.png`;
 }
 
@@ -43,7 +44,7 @@ let dinosaurs = [];
 fetch('dino.json')
   .then((response) => response.json())
   .then(
-    (json) => dinosaurs = json.Dinos.map((d) => new Animal(d.species, d.weight, d.height, d.diet)),
+    (json) => dinosaurs = json.Dinos.map((d) => new Animal(d.species, d.weight, d.height, d.diet, d.fact)),
   );
 
 const show = (element) => {
@@ -90,6 +91,9 @@ function getFact(dinosaur, human) {
     case 2:
       fact = dinosaur.compareDiet(human);
       break;
+    case 3:
+      fact = dinosaur.fact;
+      break;
     case 6:
       fact = 'All birds are dinousaurs.';
       break;
@@ -102,35 +106,37 @@ function getFact(dinosaur, human) {
 function validateForm(name, height, weight) {
   const formValidation = document.getElementById('form-validation');
   if (name === '') {
-    formValidation.innerText = 'Please digit your name';
+    formValidation.innerText = 'Please enter your name';
     return false;
   } if (height === '') {
-    formValidation.innerText = 'Please digit your height';
+    formValidation.innerText = 'Please enter your height';
     return false;
   } if (weight === '') {
-    formValidation.innerText = 'Please digit your weight';
+    formValidation.innerText = 'Please enter your weight';
     return false;
   }
   return true;
 }
 
-document.getElementById('compare-button').addEventListener('click', (event) => {
+document.getElementById('compare-button').addEventListener('click', () => {
   const formContainer = document.getElementById('main-form-container');
   const tiles = document.getElementById('tiles');
   const name = document.getElementById('name').value;
+  const humanNameTile = document.getElementById('human-name');
+  humanNameTile.innerText = name;
   const height = document.getElementById('height').value;
   const weight = document.getElementById('weight').value;
   if (validateForm(name, height, weight)) {
     const diet = document.getElementById('diet').value;
     const you = new Animal(name, height, weight, diet);
     let count = 0;
-    for (const dino in dinosaurs) {
-      const currentDinosaur = dinosaurs[dino];
+    Object.keys(dinosaurs).forEach((key) => {
+      const currentDinosaur = dinosaurs[key];
       const fact = getFact(currentDinosaur, you);
       const tileItem = createTile(currentDinosaur, currentDinosaur.image, fact, count);
       document.getElementById('tiles').appendChild(tileItem);
       count += 1;
-    }
+    });
     hide(formContainer);
     show(tiles);
   }
