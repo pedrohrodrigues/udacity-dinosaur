@@ -23,19 +23,19 @@
             <label class="form__label" for="name">
               Name:
             </label>
-            <input type="text" class="form__field" id="name" />
+            <input type="text" class="form__field" id="name" required />
           </section>
           <section class="form__item">
             <label class="form__label" for="height">
               Height:
             </label>
-            <input type="number" class="form__field" id="height" />
+            <input type="number" class="form__field" id="height" required />
           </section>
           <section class="form__item">
             <label class="form__label" for="weight">
               Weight:
             </label>
-            <input type="number" class="form__field" id="weight" />
+            <input type="number" class="form__field" id="weight" required />
           </section>
           <section>
             <label class="form__label" for="diet">
@@ -50,7 +50,8 @@
           <section class="form__item">
             <input type="button" value="compare me" id="compare-button">
           </section>
-        </form>
+        </form> 
+        <div id="form-validation"></div>
       </section>
       <section class="comparision-tiles" id="tiles">
         <section class="tile-item" id="human-tile">
