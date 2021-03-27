@@ -81,6 +81,15 @@ const hide = (element) => {
   currentElement.style.display = 'none';
 };
 
+const tryAgain = () => {
+  const formContainer = document.getElementById('main-form-container');
+  const tiles = document.getElementById('tiles');
+  const tryAgainButton = document.getElementById('try-again');
+  tiles.innerHTML = '';
+  hide(tryAgainButton);
+  hide(tiles);
+  show(formContainer);
+};
 /**
  * @description Create section called tiles in the html DOM with the animal info
  * @param {Object} animal An object representing a single animal
@@ -109,6 +118,29 @@ function createTile(animal, image, fact, order) {
 
   return tile;
 }
+
+/**
+ * @description Create section called tiles in the html DOM with the animal info
+ * @param {string} human the human name
+ */
+
+const createHumanTile = (name) => {
+  const tile = document.createElement('section');
+  tile.className = 'tile-item';
+  tile.id = 'human-tile';
+
+  const animalName = document.createElement('h2');
+  animalName.innerText = name;
+  animalName.id = 'id-human-name';
+
+  const animalImage = document.createElement('img');
+  animalImage.src = 'images/human.png';
+
+  tile.appendChild(animalName);
+  tile.appendChild(animalImage);
+
+  return tile;
+};
 
 /**
  * @description Generate a random fact for an animal object
@@ -163,32 +195,37 @@ function validateForm(name, height, weight) {
   return true;
 }
 
-
 /**
  * @description Listener on the click of the form to create the animal objects and the tiles
  */
 
-
 document.getElementById('compare-button').addEventListener('click', () => {
   const formContainer = document.getElementById('main-form-container');
+  const tryAgainButton = document.getElementById('try-again');
   const tiles = document.getElementById('tiles');
   const name = document.getElementById('name').value;
-  const humanNameTile = document.getElementById('human-name');
-  humanNameTile.innerText = name;
   const height = document.getElementById('height').value;
   const weight = document.getElementById('weight').value;
   if (validateForm(name, height, weight)) {
     const diet = document.getElementById('diet').value;
     const you = new Animal(name, height, weight, diet);
     let count = 0;
+    const humanTile = createHumanTile(name);
+    tiles.appendChild(humanTile);
     Object.keys(dinosaurs).forEach((key) => {
       const currentDinosaur = dinosaurs[key];
       const fact = getFact(currentDinosaur, you);
       const tileItem = createTile(currentDinosaur, currentDinosaur.image, fact, count);
-      document.getElementById('tiles').appendChild(tileItem);
+      tiles.appendChild(tileItem);
       count += 1;
     });
+
     hide(formContainer);
+    show(tryAgainButton);
     show(tiles);
   }
+});
+
+document.getElementById('try-again').addEventListener('click', () => {
+  tryAgain();
 });

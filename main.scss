@@ -20,6 +20,9 @@ body {
 }
 
 .form-container{
+  form {
+    width:100%;
+  }
     background: #8BC34A;
     border: 1px solid #e1e4e8;
     border-radius:6px;
@@ -28,6 +31,10 @@ body {
     max-width:600px;
     transition: all 350ms ease-in-out;
     width:95%;
+
+    input {
+      width:100%;
+    }
 }
 
 .form {
@@ -91,4 +98,11 @@ body {
 
 #compare-button {
   margin-top:15px;
+}
+
+.try-again {
+  display: none;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%;
 }

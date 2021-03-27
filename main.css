@@ -23,6 +23,10 @@ body {
   max-width: 600px;
   transition: all 350ms ease-in-out;
   width: 95%; }
+  .form-container form {
+    width: 100%; }
+  .form-container input {
+    width: 100%; }
 
 .form__item {
   margin: 5px 0; }
@@ -72,3 +76,9 @@ body {
 
 #compare-button {
   margin-top: 15px; }
+
+.try-again {
+  display: none;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%; }
