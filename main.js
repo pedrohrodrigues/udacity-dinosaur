@@ -24,7 +24,7 @@ function Animal(name, height, weight, diet, fact) {
 Animal.prototype.compareWeight = function (animal) {
   const comparsion = Math.ceil(this.weight / animal.weight);
   let weightReturn = 'Ours weights are the same';
-  if (animal.weight > this.heihgt) {
+  if (animal.weight > this.weight) {
     weightReturn = `The ${animal.name} is ${comparsion} times heavier more than you`;
   } else {
     weightReturn = `${this.name} is ${comparsion} times heavier more than ${animal.name}`;
@@ -41,7 +41,7 @@ Animal.prototype.compareWeight = function (animal) {
 Animal.prototype.compareHeight = function (animal) {
   const comparsion = Math.ceil(this.height / animal.height);
   let heightReturn = 'Ours weights are the same';
-  if (animal.height > this.heihgt) {
+  if (animal.height > this.height) {
     heightReturn = `The ${animal.name} ${comparsion} times taller more than ${this.name}`;
   } else {
     heightReturn = `${this.name} are ${comparsion} times taller more than you`;
