@@ -7,12 +7,13 @@
  * @param {string} diet the animal diet
  * @param {string} fact a animal random fact
  */
-function Animal(name, height, weight, diet, fact) {
+function Animal(name, height, weight, diet, fact, where = '') {
   this.name = name;
   this.height = height;
   this.weight = weight;
   this.diet = diet;
   this.fact = fact;
+  this.where = where;
   this.image = `images/${name.toLowerCase()}.png`;
 }
 
@@ -22,12 +23,13 @@ function Animal(name, height, weight, diet, fact) {
  */
 
 Animal.prototype.compareWeight = function (animal) {
-  const comparsion = Math.ceil(this.weight / animal.weight);
   let weightReturn = 'Ours weights are the same';
   if (animal.weight > this.weight) {
-    weightReturn = `The ${animal.name} is ${comparsion} times heavier more than you`;
+    const comparsion = Math.ceil(animal.weight / this.weight);
+    weightReturn = `You are ${comparsion} times heavier than ${this.name}`;
   } else {
-    weightReturn = `${this.name} is ${comparsion} times heavier more than ${animal.name}`;
+    const comparsion = Math.ceil(this.weight / animal.weight);
+    weightReturn = `The ${this.name} is ${comparsion} times heavier than you`;
   }
 
   return weightReturn;
@@ -39,12 +41,13 @@ Animal.prototype.compareWeight = function (animal) {
  */
 
 Animal.prototype.compareHeight = function (animal) {
-  const comparsion = Math.ceil(this.height / animal.height);
   let heightReturn = 'Ours weights are the same';
   if (animal.height > this.height) {
-    heightReturn = `The ${animal.name} ${comparsion} times taller more than ${this.name}`;
+    const comparsion = Math.ceil(animal.height / this.height);
+    heightReturn = `You are ${comparsion} times taller than ${this.name}`;
   } else {
-    heightReturn = `${this.name} are ${comparsion} times taller more than you`;
+    const comparsion = Math.ceil(this.height / animal.height);
+    heightReturn = `${this.name} is ${comparsion} times taller than you`;
   }
 
   return heightReturn;
@@ -68,7 +71,7 @@ let dinosaurs = [];
 fetch('dino.json')
   .then((response) => response.json())
   .then(
-    (json) => dinosaurs = json.Dinos.map((d) => new Animal(d.species, d.weight, d.height, d.diet, d.fact)),
+    (json) => dinosaurs = json.Dinos.map((d) => new Animal(d.species, d.weight, d.height, d.diet, d.fact, d.where)),
   );
 
 const show = (element) => {
@@ -168,7 +171,7 @@ function getFact(dinosaur, human) {
       fact = 'All birds are dinousaurs.';
       break;
     default:
-      fact = 'A dinosaur!';
+      fact = `The ${dinosaur.name} once lived in ${dinosaur.where}`;
   }
   return fact;
 }
